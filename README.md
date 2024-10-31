@@ -1,16 +1,16 @@
 #Documentação básica para rodar os testes no projeto#
 
-* Pré-requisitos
+## Pré-requisitos
 É necessário ter o Node.js e o npm instalados 
 - Estou usando a versão 20.18.0 do Node.js e a versão 10.8.2 do npm (Sugiro usar as mesmas versões ou inferiores)
     - Para baixar o Node.js acesse o site https://nodejs.org/en/download/source-code (O npm já vem com o pacote do Node.js)
-___________________________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________
 
-* Instalando depedências
+## Instalando depedências
 - Rode o comando "npm install" em seu terminal para baixa todas as depedências.
-___________________________________________________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________
 
-* Testes
+## Testes
 Rodando os testes via cypress runner
 - Em seu arquivo package.json adicione o script "cy:open": "cypress open" para ter acesso ao cypress runner quando rodar o comando abaixo.
 - Para a realização dos testes rode o comando "npm run cy:open" em seu terminal para abrir o cypress runner em seu navegador.

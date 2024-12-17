@@ -151,4 +151,59 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.contains('Talking About Testing').should('be.visible')
         cy.contains('CAC TAT - Política de privacidade').should('be.visible')
     })
-})
+    it('Validar mensagem de erro usando clock, tick e usando o lodash integrado do cypress', function() {
+        cy.clock()
+        cy.contains('Enviar').click()
+        cy.get('.error').should('be.visible')
+        cy.tick(3000)
+        cy.get('.error').should('not.be.visible')
+        cy.get('.success')
+          .should('exist')
+          .should('not.be.visible')
+          .invoke('show')
+          .should('be.visible')
+          .and('contain', 'Mensagem enviada com sucesso.')
+          .invoke('hide')
+          .should('not.be.visible')
+        cy.get('.error')
+          .should('not.be.visible')
+          .invoke('show')
+          .should('be.visible')
+          .and('contain', 'Valide os campos obrigatórios!')
+          .invoke('hide')
+          .should('not.be.visible')
+        })
+    })
+    it('Exibe e esconde a mensagen de sucesso usando o invoke', function() {
+            cy.get('.success')
+              .should('exist') // Garante que o elemento está no DOM
+              .should('not.be.visible') // Confirma que está oculto
+              .invoke('show') // Torna visível
+              .should('be.visible') // Confirma visibilidade
+              .and('contain', 'Mensagem enviada com sucesso.') // Verifica o texto
+              .invoke('hide') // Torna oculto novamente
+              .should('not.be.visible'); // Confirma que está oculto
+        
+            // Testar a mensagem de erro
+            cy.get('.error')
+              .should('not.be.visible') // Confirma que está oculto
+              .invoke('show') // Torna visível
+              .should('be.visible') // Confirma visibilidade
+              .and('contain', 'Valide os campos obrigatórios!') // Verifica o texto
+              .invoke('hide') // Torna oculto novamente
+              .should('not.be.visible'); // Confirma que está oculto
+        })
+    it('Preenche o campo texto livre utilizando o invoke',function() {
+        cy.get('#open-text-area')
+            .invoke('val','Testando o invoke')
+            .should('have.value','Testando o invoke')
+    })
+
+    it('Preenche o campo de texto livre utlizando o invoke e repeat', function() {
+        const longtext = Cypress._.repeat ('123456789', 20)
+        cy.get('#open-text-area')
+            .invoke('val',longtext)
+            .should('have.value',longtext)
+    })
+
+    
